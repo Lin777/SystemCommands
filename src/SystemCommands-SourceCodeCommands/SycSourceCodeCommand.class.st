@@ -29,11 +29,24 @@ SycSourceCodeCommand class >> method: aMethod node: aRBProgramNode [
 		sourceNode: aRBProgramNode
 ]
 
+{ #category : #execution }
+SycSourceCodeCommand >> execute [
+	| intLayer refactoring |
+	intLayer := (Smalltalk globals at: #RBInteractiveLayer) method: method node: sourceNode .
+	refactoring := self executeRefactoringsOf: intLayer.
+	((Smalltalk globals at: #ChangesBrowserPresenter) changes: {refactoring}) open 
+]
+
 { #category : #private }
 SycSourceCodeCommand >> executeRefactoring: refactoring [
 
 	NautilusRefactoring new refactoringOptions: refactoring.
 	[ refactoring execute ] on: RBRefactoringError do: [ :e | UIManager default alert: e messageText ].
+]
+
+{ #category : #execution }
+SycSourceCodeCommand >> executeRefactoringsOf: intLayer [
+	self subclassResponsibility 
 ]
 
 { #category : #accessing }

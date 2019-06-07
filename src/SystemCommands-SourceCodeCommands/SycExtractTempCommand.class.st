@@ -36,15 +36,9 @@ SycExtractTempCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycExtractTempCommand >> execute [
-	| refactoring |
-	refactoring := RBExtractToTemporaryRefactoring	
-		extract: sourceNode sourceInterval
-		to: tempName
-		from: method selector
-		in: method origin.
+SycExtractTempCommand >> executeRefactoringsOf: intLayer [
 	
-	self executeRefactoring: refactoring.
+	^ intLayer extractTempWithName: tempName withPerform: #primitiveExecute.
 ]
 
 { #category : #execution }
