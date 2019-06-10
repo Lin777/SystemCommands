@@ -31,9 +31,9 @@ SycSourceCodeCommand class >> method: aMethod node: aRBProgramNode [
 
 { #category : #execution }
 SycSourceCodeCommand >> execute [
-	| intLayer refactoring |
-	intLayer := RBInteractiveLayer method: method node: sourceNode .
-	refactoring := self executeRefactoringsOf: intLayer.
+	| interactiveLayerLayer refactoring |
+	interactiveLayerLayer := RBInteractiveLayer method: method node: sourceNode .
+	refactoring := self executeRefactoringsOf: interactiveLayerLayer.
 	(ChangesBrowserPresenter changes: {refactoring}) open
 ]
 

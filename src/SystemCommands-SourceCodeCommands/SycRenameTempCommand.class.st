@@ -35,15 +35,8 @@ SycRenameTempCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycRenameTempCommand >> execute [
-	| refactoring |
-	refactoring := RBRenameTemporaryRefactoring	
-		renameTemporaryFrom: sourceNode sourceInterval
-		to: newName
-		in: method origin
-		selector: method selector.
-	
-	self executeRefactoring: refactoring.
+SycRenameTempCommand >> executeRefactoringsOf: intLayer [
+	^ intLayer renameTempWithName: newName withPerform: #primitiveExecute
 ]
 
 { #category : #execution }
