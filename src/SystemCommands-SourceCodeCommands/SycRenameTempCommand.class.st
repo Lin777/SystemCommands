@@ -35,8 +35,8 @@ SycRenameTempCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycRenameTempCommand >> executeRefactoringsOf: intLayer [
-	^ intLayer renameTempWithName: newName withPerform: #primitiveExecute
+SycRenameTempCommand >> executeRefactoringsOf: interactiveLayer [
+	^ interactiveLayer renameTempWithName: newName withPerform: #primitiveExecute
 ]
 
 { #category : #execution }

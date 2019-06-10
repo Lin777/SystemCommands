@@ -20,6 +20,6 @@ SycInlineTempCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycInlineTempCommand >> executeRefactoringsOf: intLayer [
-	^ intLayer inlineTempWithPerform: #primitiveExecute
+SycInlineTempCommand >> executeRefactoringsOf: interactiveLayer [
+	^ interactiveLayer inlineTempWithPerform: #primitiveExecute
 ]

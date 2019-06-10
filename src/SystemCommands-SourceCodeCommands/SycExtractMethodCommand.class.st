@@ -5,7 +5,8 @@ Class {
 	#name : #SycExtractMethodCommand,
 	#superclass : #SycSourceCodeCommand,
 	#instVars : [
-		'selectedTextInterval'
+		'selectedTextInterval',
+		'methodName'
 	],
 	#category : #'SystemCommands-SourceCodeCommands'
 }
@@ -23,20 +24,9 @@ SycExtractMethodCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycExtractMethodCommand >> execute [
-	| refactoring dialog selectedInterval |
-	selectedInterval := selectedTextInterval ifEmpty: [ sourceNode sourceInterval ].
-	
-	refactoring := RBExtractMethodRefactoring	
-		extract: selectedInterval from: method selector in: method origin.
-	self setUpOptionToUseExistingMethodDuring: refactoring.
-	self setUpOptionToOverrideExistingMethodDuring: refactoring.
-	refactoring setOption: #methodName toUse:  [ :ref :methodName |
-		dialog := SycMethodNameEditor openOn: methodName.
-		dialog cancelled ifTrue: [  CmdCommandAborted signal ].
-		methodName].
-	
-	self executeRefactoring: refactoring.
+SycExtractMethodCommand >> executeRefactoringsOf: interactiveLayer [
+	interactiveLayer interval: (selectedTextInterval ifEmpty: [ sourceNode sourceInterval ]).
+	^ interactiveLayer extractMethodWithPerform: #primitiveExecute.
 ]
 
 { #category : #execution }

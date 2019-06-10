@@ -36,9 +36,9 @@ SycExtractTempCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycExtractTempCommand >> executeRefactoringsOf: intLayer [
+SycExtractTempCommand >> executeRefactoringsOf: interactiveLayer [
 	
-	^ intLayer extractTempWithName: tempName withPerform: #primitiveExecute.
+	^ interactiveLayer extractTempWithName: tempName withPerform: #primitiveExecute.
 ]
 
 { #category : #execution }
