@@ -32,9 +32,9 @@ SycSourceCodeCommand class >> method: aMethod node: aRBProgramNode [
 { #category : #execution }
 SycSourceCodeCommand >> execute [
 	| intLayer refactoring |
-	intLayer := (Smalltalk globals at: #RBInteractiveLayer) method: method node: sourceNode .
+	intLayer := RBInteractiveLayer method: method node: sourceNode .
 	refactoring := self executeRefactoringsOf: intLayer.
-	((Smalltalk globals at: #ChangesBrowserPresenter) changes: {refactoring}) open 
+	(ChangesBrowserPresenter changes: {refactoring}) open
 ]
 
 { #category : #private }
