@@ -31,10 +31,11 @@ SycSourceCodeCommand class >> method: aMethod node: aRBProgramNode [
 
 { #category : #execution }
 SycSourceCodeCommand >> execute [
-	| interactiveLayerLayer refactoring |
+	[| interactiveLayerLayer refactoring |
 	interactiveLayerLayer := RBInteractiveLayer method: method node: sourceNode .
 	refactoring := self executeRefactoringsOf: interactiveLayerLayer.
-	(ChangesBrowserPresenter changes: {refactoring}) open
+	(ChangesBrowserPresenter changes: {refactoring}) open]
+	on: RBRefactoringError do: [ :e | UIManager default alert: e messageText ]
 ]
 
 { #category : #private }
