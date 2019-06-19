@@ -20,6 +20,6 @@ SycInlineMethodCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycInlineMethodCommand >> executeRefactoringsOf: interactiveLayer [
-	^ interactiveLayer inlineMethodWithPerform: #primitiveExecute
+SycInlineMethodCommand >> execute [
+	(RBGenericInteractLayer sourceNode: sourceNode method: method) executeInlineMethod
 ]
