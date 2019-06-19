@@ -12,7 +12,7 @@ BaselineOfSystemCommands >> baseline: spec [
 		spec baseline: 'Commander' with: [
 			spec repository: 'github://pharo-ide/Commander:v0.8.0/src' ].
 		spec baseline: 'Enjoliveur' with: [
-			spec repository: 'github://Lin777/Enjoliveur:AddInteractiveLayer/source' ].
+			spec repository: 'github://Lin777/Enjoliveur:UpdateInteractiveLayer/source' ].
 		spec
 			package: #'SystemCommands-RefactoringSupport' with: [
 				spec requires: #('Commander' ). ]; 
