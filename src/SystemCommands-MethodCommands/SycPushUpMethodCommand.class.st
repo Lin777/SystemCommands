@@ -23,6 +23,7 @@ SycPushUpMethodCommand >> defaultMenuItemName [
 SycPushUpMethodCommand >> execute [
 
 	self executeRefactorings
+	"(RBGenericInteractLayer method: method)"
 ]
 
 { #category : #testing }

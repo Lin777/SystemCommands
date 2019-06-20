@@ -4,10 +4,6 @@ I am a command to extract selected ast node into separate method
 Class {
 	#name : #SycExtractMethodCommand,
 	#superclass : #SycSourceCodeCommand,
-	#instVars : [
-		'selectedTextInterval',
-		'methodName'
-	],
 	#category : #'SystemCommands-SourceCodeCommands'
 }
 
@@ -24,31 +20,6 @@ SycExtractMethodCommand >> defaultMenuItemName [
 ]
 
 { #category : #execution }
-SycExtractMethodCommand >> executeRefactoringsOf: interactiveLayer [
-	interactiveLayer interval: (selectedTextInterval ifEmpty: [ sourceNode sourceInterval ]).
-	^ interactiveLayer extractMethodWithPerform: #primitiveExecute.
-]
-
-{ #category : #execution }
-SycExtractMethodCommand >> readParametersFromContext: aSourceCodeContext [
-	super readParametersFromContext: aSourceCodeContext.
-	
-	selectedTextInterval := aSourceCodeContext selectedTextInterval
-]
-
-{ #category : #execution }
-SycExtractMethodCommand >> setUpOptionToOverrideExistingMethodDuring: aRefactoring [
-
-	aRefactoring setOption: #alreadyDefined toUse:  [ :ref :class :selector | 
-		ref refactoringWarning: 'Method ', selector printString, ' will override method in ', class name]. 
-]
-
-{ #category : #execution }
-SycExtractMethodCommand >> setUpOptionToUseExistingMethodDuring: aRefactoring [
-
-	aRefactoring setOption: #useExistingMethod toUse:  [ :ref :selector | 
-		UIManager default 
-			confirm: 'Do you want use existing method ', selector printString, '?'
-			label: 'Warninig']. 	
-	
+SycExtractMethodCommand >> execute [
+	(RBGenericInteractLayer sourceNode: sourceNode method: method) executeExtractMethod
 ]

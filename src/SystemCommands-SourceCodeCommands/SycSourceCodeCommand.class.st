@@ -29,27 +29,6 @@ SycSourceCodeCommand class >> method: aMethod node: aRBProgramNode [
 		sourceNode: aRBProgramNode
 ]
 
-{ #category : #execution }
-SycSourceCodeCommand >> execute [
-	[| interactiveLayerLayer refactoring |
-	interactiveLayerLayer := RBInteractiveLayer method: method node: sourceNode .
-	refactoring := self executeRefactoringsOf: interactiveLayerLayer.
-	(ChangesBrowserPresenter changes: {refactoring}) open]
-	on: RBRefactoringError do: [ :e | UIManager default alert: e messageText ]
-]
-
-{ #category : #private }
-SycSourceCodeCommand >> executeRefactoring: refactoring [
-
-	NautilusRefactoring new refactoringOptions: refactoring.
-	[ refactoring execute ] on: RBRefactoringError do: [ :e | UIManager default alert: e messageText ].
-]
-
-{ #category : #execution }
-SycSourceCodeCommand >> executeRefactoringsOf: intLayer [
-	self subclassResponsibility 
-]
-
 { #category : #accessing }
 SycSourceCodeCommand >> method [
 	^ method
